@@ -1,5 +1,10 @@
-root {
-  --bs-font-sans-serif: 'Rubik', sans-serif;
+.App{
+background-image: url("assets/bg.svg");
+height: 100vh;
+background-color: rgb(243, 243,243);
 }
 
-.container-xxl { max-width: 1530px; }
+.main_container{
+  background-color: white;
+  max-width: 1530px;
+}
