@@ -8,7 +8,7 @@ export default function Header() {
     console.log(fleldVal);
   };
   return (
-      <Container className="main_container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom ">
+      <Container className="main_container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between  mb-0 border-bottom ">
         <Nav.Link
           href="/"
           className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
@@ -16,16 +16,16 @@ export default function Header() {
           <img
             src={require("../assets/logo.svg").default}
             width="229"
-            height="68"
+            height="30"
             alt="Story Teller"
           />
         </Nav.Link>
         <ListGroup
           horizontal
-          className="col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+          className="col-12 col-md-auto mb-2 mt-0 justify-content-center mb-md-0"
         >
-          <ListGroup.Item className="border-0">
-            <Nav.Link href="/" className="px-2 link-secondary">
+          <ListGroup.Item className="border-0 ">
+            <Nav.Link href="/" className="px-2  link-secondary">
               Home
             </Nav.Link>
           </ListGroup.Item>
