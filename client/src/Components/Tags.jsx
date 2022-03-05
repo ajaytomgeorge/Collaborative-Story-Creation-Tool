@@ -16,12 +16,12 @@ export default function Tags(){
             >
               <div className="category__img shadow">
                 <img
-                  src={require("../assets/food.jpg")}
-                  alt="Food Type"
+                  src={require("../assets/dna.webp")}
+                  alt="Tag Type"
                   loading="lazy"
                 />
               </div>
-              <div className="pt-1">Food</div>
+              <div className="pt-1">Science</div>
             </a>
           ))}
         </div>
