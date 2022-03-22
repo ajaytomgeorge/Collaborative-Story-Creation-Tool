@@ -16,7 +16,7 @@ export default function Tags(){
             >
               <div className="category__img shadow">
                 <img
-                  src={require("../assets/dna.webp")}
+                  src={require("../assets/bigdata.jpg")}
                   alt="Tag Type"
                   loading="lazy"
                 />
