@@ -10,4 +10,6 @@ db.once('open', function(){
 
 //Models
 require('./Tags');
-require('./Trending');
+require('./Story');
+require('./User');
+require('./Logs');

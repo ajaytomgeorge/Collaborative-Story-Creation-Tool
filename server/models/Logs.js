@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const tagSchema = new  mongoose.Schema({
+const logSchema = new  mongoose.Schema({
 
     name: {
         type : String,
@@ -14,4 +14,4 @@ const tagSchema = new  mongoose.Schema({
     {timestamps:true}
 );
 
-module.exports = mongoose.model('Tags', tagSchema);
+module.exports = mongoose.model('Logs', logSchema);

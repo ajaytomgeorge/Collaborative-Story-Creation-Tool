@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const trendingSchema = new  mongoose.Schema({
+const storySchema = new  mongoose.Schema({
 
     name: {
         type : String,
@@ -10,6 +10,8 @@ const trendingSchema = new  mongoose.Schema({
         type : String,
         required: 'This field is required.'
     }
-});
+},
+    {timestamps:true}
+);
 
-module.exports = mongoose.model('Trending', trendingSchema);
+module.exports = mongoose.model('Story', storySchema);
