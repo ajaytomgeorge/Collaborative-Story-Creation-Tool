@@ -2,13 +2,24 @@ const mongoose = require('mongoose');
 
 const logSchema = new  mongoose.Schema({
 
-    name: {
-        type : String,
-        required: 'This field is required.'
+    storyId: {
+        type: mongoose.Types.ObjectId,
+        ref: "story",
+        required: true
     },
-    description: {
-        type : String,
-        required: 'This field is required.'
+    userId: {
+        type: mongoose.Types.ObjectId,
+        ref: "user",
+        required: true
+    },
+    register_date: {
+        type: Date,
+        default: Date.now
+    },
+    comment:{
+        type:String,
+        default : "no comments added"
+    
     }
 },
     {timestamps:true}

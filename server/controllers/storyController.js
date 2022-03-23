@@ -1,5 +1,5 @@
 require('../models/database');
-const Category = require('../models/Tags');
+const Tags = require('../models/Tags');
 const Story = require('../models/Story');
 
 /**

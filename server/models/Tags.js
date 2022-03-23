@@ -4,11 +4,8 @@ const tagSchema = new  mongoose.Schema({
 
     name: {
         type : String,
-        required: 'This field is required.'
-    },
-    description: {
-        type : String,
-        required: 'This field is required.'
+        required: true,
+        unique: true
     }
 },
     {timestamps:true}
