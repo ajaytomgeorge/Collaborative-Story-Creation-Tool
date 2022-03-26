@@ -1,23 +1,27 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "react-bootstrap";
-import Header from "./Components/Header";
-import Introduction from "./Components/Intro";
-import Tags from "./Components/Tags";
-import Trending from "./Components/Trending";
-import JoinNow from "./Components/JoinNow";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import ErrorPage from "./pages/ErrorPage";
+import HomePage from "./pages/HomePage";
+
 function App() {
   return (
-    <div className="App">
-      <Container className="main_container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom shadow">
-        <Header />
-        <Introduction />
-        <Tags/>
-        <Trending/>
-        <JoinNow/>
-        
-      </Container>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="contact" element={<ContactPage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

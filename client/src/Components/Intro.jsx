@@ -24,13 +24,13 @@ export default function Introduction() {
 
         <div className="d-grid gap-2 d-md-flex justify-content-md-start">
           <a
-            href="/explore-latest"
+            href="/login"
             className="btn btn-primary btn-dark btn-lg px-4 me-md-2"
           >
-           Login
+            Login
           </a>
           <a
-            href="/explore-random"
+            href="/signup"
             className="btn btn-outline-secondary btn-lg px-4 me-md-2"
           >
             Sign Up
