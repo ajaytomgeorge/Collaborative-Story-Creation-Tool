@@ -4,7 +4,7 @@ export default function Trending (){
     return (<Container className="mt-4">
     <div class="d-flex mb-2 align-items-center">
       <h2>Trending Stories</h2>
-      <a href="/explore-latest" class="ms-auto">
+      <a href="/search" class="ms-auto">
         View More
       </a>
     </div>

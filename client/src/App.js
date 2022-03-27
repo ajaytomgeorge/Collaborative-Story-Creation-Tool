@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import StoryPage from "./pages/StoryPage";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="sign-up" element={<SignUp/>} />
             <Route index element={<HomePage />} />
             <Route path="publish" element={<StoryPage />} />
+            <Route path="search" element={<SearchResults />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
       </div>
