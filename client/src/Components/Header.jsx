@@ -35,8 +35,8 @@ export default function Header() {
             </Nav.Link>
           </ListGroup.Item>
           <ListGroup.Item className="border-0">
-            <Nav.Link href="/submit-recipe" className="px-2 link-secondary">
-              Submit
+            <Nav.Link href="/publish" className="px-2 link-secondary">
+              Publish
             </Nav.Link>
           </ListGroup.Item>
           <ListGroup.Item className="border-0">

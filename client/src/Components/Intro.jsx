@@ -30,7 +30,7 @@ export default function Introduction() {
             Login
           </a>
           <a
-            href="/signup"
+            href="/sign-up"
             className="btn btn-outline-secondary btn-lg px-4 me-md-2"
           >
             Sign Up

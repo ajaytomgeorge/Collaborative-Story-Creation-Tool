@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
+import StoryPage from "./pages/StoryPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="sign-up" element={<SignUp/>} />
             <Route index element={<HomePage />} />
+            <Route path="publish" element={<StoryPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
       </div>

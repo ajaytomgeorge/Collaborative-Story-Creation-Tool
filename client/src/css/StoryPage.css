@@ -1,0 +1,23 @@
+
+/* Editor */
+.editor{
+    min-height: 85vh;
+    height: 100%;
+    border-radius: 8px;
+    width:100%;
+    margin: 50px;
+    border: 5px solid lightgray
+  
+  
+  }
+  
+  .ql-container.ql-snow{ border: none !important;}
+  
+  .publish{
+    border: none !important;
+    color: gray !important;
+  }
+  
+  .publish:hover {
+    background-color: lightgray !important;
+  }
