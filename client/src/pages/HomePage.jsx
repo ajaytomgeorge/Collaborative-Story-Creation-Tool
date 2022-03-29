@@ -7,9 +7,6 @@ import Tags from "../Components/Tags";
 import Trending from "../Components/Trending";
 import JoinNow from "../Components/JoinNow";
 
-import AboutPage from "../pages/AboutPage";
-import ContactPage from "../pages/ContactPage";
-
 export default function Homepage() {
   const [storyMode, setstoryMode] = useState(true);
 

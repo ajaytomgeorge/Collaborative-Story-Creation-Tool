@@ -40,8 +40,8 @@ export default function Header() {
             </Nav.Link>
           </ListGroup.Item>
           <ListGroup.Item className="border-0">
-            <Nav.Link href="/contact" className="px-2 link-secondary">
-              Contact
+            <Nav.Link href="/login" className="px-2 link-secondary">
+              Login
             </Nav.Link>
           </ListGroup.Item>
         </ListGroup>

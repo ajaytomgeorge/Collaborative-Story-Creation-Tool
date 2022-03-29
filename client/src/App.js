@@ -5,11 +5,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
-
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import StoryPage from "./pages/StoryPage";
 import SearchResults from "./pages/SearchResults";
+
+
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="publish" element={<StoryPage />} />
             <Route path="search" element={<SearchResults />} />
+            <Route path="about" element={<AboutPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
       </div>
