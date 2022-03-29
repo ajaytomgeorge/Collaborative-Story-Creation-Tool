@@ -23,7 +23,7 @@ const storySchema = new  mongoose.Schema({
     },
     tags: [{
            type: mongoose.Types.ObjectId,
-           ref: "tags",
+           ref: "tags"
     }],
 },
     {timestamps:true}
