@@ -17,7 +17,7 @@ export default function JoinNow(){
               Let the world come to you
             </p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <a href="/submit-recipe" class="btn btn-primary btn-dark btn-lg">
+              <a href="/publish" class="btn btn-primary btn-dark btn-lg">
                 Submit Story
               </a>
             </div>

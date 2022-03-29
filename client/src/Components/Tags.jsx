@@ -3,7 +3,7 @@ export default function Tags(){
     return (<Container>
         <div class="d-flex mb-2 align-items-center">
           <h2>Watchful Tags</h2>
-          <a href="/explore-latest" class="ms-auto">
+          <a href="/search" class="ms-auto">
             View More
           </a>
         </div>
