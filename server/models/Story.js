@@ -17,6 +17,7 @@ const storySchema = new  mongoose.Schema({
            trim: true,
            required: true
     },
+    data:Object,
     date: {
            type: Date,
            default: Date.now

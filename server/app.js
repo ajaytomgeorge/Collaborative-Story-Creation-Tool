@@ -1,24 +1,49 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const http = require("http");
+const { join } = require("path");
+
+const { notFound, errorHandler } = require("./middleware/error");
+const authRouter = require('./routes/auth');
 const routes = require("./routes/storyRoutes.js");
-const { requireAuth } = require('./middleware/cookieJwtAuth');
+const connectDB = require("./db/database.js");
+const Story = require("./models/Story");
+
+const { json, urlencoded } = express;
+
+require("dotenv").config();
+connectDB();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const server = http.createServer(app);
 
-require('dotenv').config();
+//logger
+if (process.env.NODE_ENV === "development") {
+  app.use(logger("dev"));
+}
 
-// app.use(express.urlencoded({extended:true}));
-app.use(express.json());
+app.use(json());
+app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(join(__dirname, "public")));
+
+app.use("/auth", authRouter);
+// app.use("/users", userRouter);
+// app.use("/profile", profileRouter);
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
+app.use(notFound);
+app.use(errorHandler);
 
 
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err, promise) => {
+  console.log(`Error: ${err.message}`.red);
+  // Close server & exit process
+  server.close(() => process.exit(1));
+});
 
-// app.get('/', (req,res) => res.render('homepage'));
-// app.get('/' , requireAuth ,  (req,res) => res.render(''));
-app.use('/api',routes);
-
-
-app.listen(port,() => console.log(`Listening to ${port}`))
-
-
+server.listen(8080,() => {console.log("Backend Initialized")});
+module.exports = { app, server };

@@ -1,4 +1,4 @@
-require('../models/database');
+require('../db/database');
 const User = require('../models/User');
 const Tags = require('../models/Tags');
 const Story = require('../models/Story');
