@@ -6,7 +6,8 @@ const { join } = require("path");
 
 const { notFound, errorHandler } = require("./middleware/error");
 const authRouter = require('./routes/auth');
-const routes = require("./routes/storyRoutes.js");
+const tagsRouter = require('./routes/tags')
+
 const connectDB = require("./db/database.js");
 const Story = require("./models/Story");
 
@@ -29,8 +30,7 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
 app.use("/auth", authRouter);
-// app.use("/users", userRouter);
-// app.use("/profile", profileRouter);
+app.use("/tags", tagsRouter);
 app.get("/", (req, res) => {
   res.send("API is running");
 });
@@ -39,7 +39,7 @@ app.use(errorHandler);
 
 
 // Handle unhandled promise rejections
-process.on('unhandledRejection', (err, promise) => {
+process.on('Main Process unhandledRejection', (err, promise) => {
   console.log(`Error: ${err.message}`.red);
   // Close server & exit process
   server.close(() => process.exit(1));
