@@ -1,14 +1,49 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const http = require("http");
+const { join } = require("path");
 
-const app = express()
-const port = process.env.PORT || 3000;
+const { notFound, errorHandler } = require("./middleware/error");
+const authRouter = require('./routes/auth');
+const routes = require("./routes/storyRoutes.js");
+const connectDB = require("./db/database.js");
+const Story = require("./models/Story");
 
-require('dotenv').config();
+const { json, urlencoded } = express;
 
-app.use(express.urlencoded({extended:true}));
-const routes = require("./routes/storyRoutes.js")
-app.use('/',routes);
+require("dotenv").config();
+connectDB();
 
-app.listen(port,() => console.log(`Listening to ${port}`))
+const app = express();
+const server = http.createServer(app);
+
+//logger
+if (process.env.NODE_ENV === "development") {
+  app.use(logger("dev"));
+}
+
+app.use(json());
+app.use(urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(join(__dirname, "public")));
+
+app.use("/auth", authRouter);
+// app.use("/users", userRouter);
+// app.use("/profile", profileRouter);
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
+app.use(notFound);
+app.use(errorHandler);
 
 
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err, promise) => {
+  console.log(`Error: ${err.message}`.red);
+  // Close server & exit process
+  server.close(() => process.exit(1));
+});
+
+server.listen(8080,() => {console.log("Backend Initialized")});
+module.exports = { app, server };
