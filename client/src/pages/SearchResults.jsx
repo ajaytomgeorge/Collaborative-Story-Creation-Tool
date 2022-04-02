@@ -19,7 +19,7 @@ export default function SearchResults() {
             <Card>
               <Card.Img
                 variant="top"
-                src={require("../assets/card.svg").default}
+                src="https://picsum.photos/321/160?random=2"
               />
               <Card.Body>
                 <Card.Title>Card title</Card.Title>

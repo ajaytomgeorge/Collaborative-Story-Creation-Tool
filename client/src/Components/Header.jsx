@@ -13,12 +13,9 @@ export default function Header() {
           href="/"
           className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
         >
-          <img
-            src={require("../assets/logo.svg").default}
-            width="229"
-            height="30"
-            alt="Story Teller"
-          />
+          <div style={{marginTop:"15px", fontSize:"25px"}}>
+          <p>Story Factory</p>
+          </div>
         </Nav.Link>
         <ListGroup
           horizontal
