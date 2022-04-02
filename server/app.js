@@ -1,8 +1,11 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require('cors');
 const logger = require("morgan");
 const http = require("http");
 const { join } = require("path");
+const process = require('process');
+
 
 const { notFound, errorHandler } = require("./middleware/error");
 const authRouter = require('./routes/auth');
@@ -18,6 +21,9 @@ connectDB();
 
 const app = express();
 const server = http.createServer(app);
+app.use(cors({
+  origin: '*'
+}));
 
 //logger
 if (process.env.NODE_ENV === "development") {

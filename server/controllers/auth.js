@@ -40,7 +40,8 @@ exports.registerUser = asyncHandler(async (req, res) => {
         user: {
           id: user._id,
           username: user.username,
-          email: user.email
+          email: user.email,
+          token:token
         }
       }
     });
@@ -72,7 +73,8 @@ exports.loginUser = asyncHandler(async (req, res) => {
         user: {
           id: user._id,
           username: user.username,
-          email: user.email
+          email: user.email,
+          token:token
         }
       }
     });
