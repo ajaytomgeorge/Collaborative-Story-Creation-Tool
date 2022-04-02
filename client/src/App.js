@@ -24,7 +24,7 @@ function App() {
             <Route path="sign-up" element={<SignUp/>} />
             <Route index element={<HomePage />} />
             <Route path="publish" element={<StoryDisplay />} />
-            <Route path="search" element={<SearchResults />} />
+            <Route path="search/:searchString" element={<SearchResults/>} />
             <Route path="about" element={<AboutPage />} />
             <Route path="logs" element={<LogsPage />} />
             <Route path="*" element={<ErrorPage />} />

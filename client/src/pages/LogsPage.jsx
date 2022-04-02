@@ -17,6 +17,10 @@ export default function LogsPage() {
   return (
     <React.Fragment>
       <Container className="main_container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom shadow">
+        <Container>
+          <h1>Logs</h1>
+        <p>Logs are updated real time . Times are specified in GMT 0:00</p> 
+        </Container>
         {logs.map((log) => {
           return (
             <div>
