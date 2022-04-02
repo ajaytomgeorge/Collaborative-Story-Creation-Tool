@@ -7,9 +7,9 @@ const { join } = require("path");
 const { notFound, errorHandler } = require("./middleware/error");
 const authRouter = require('./routes/auth');
 const tagsRouter = require('./routes/tags')
+const storyRouter = require('./routes/story')
 
 const connectDB = require("./db/database.js");
-const Story = require("./models/Story");
 
 const { json, urlencoded } = express;
 
@@ -31,6 +31,7 @@ app.use(express.static(join(__dirname, "public")));
 
 app.use("/auth", authRouter);
 app.use("/tags", tagsRouter);
+app.use("/story", storyRouter);
 app.get("/", (req, res) => {
   res.send("API is running");
 });
