@@ -11,6 +11,7 @@ const { notFound, errorHandler } = require("./middleware/error");
 const authRouter = require('./routes/auth');
 const tagsRouter = require('./routes/tags')
 const storyRouter = require('./routes/story')
+const logsRouter = require('./routes/logs')
 
 const connectDB = require("./db/database.js");
 
@@ -38,6 +39,7 @@ app.use(express.static(join(__dirname, "public")));
 app.use("/auth", authRouter);
 app.use("/tags", tagsRouter);
 app.use("/story", storyRouter);
+app.use("/logs", logsRouter);
 app.get("/", (req, res) => {
   res.send("API is running");
 });

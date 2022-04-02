@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp";
 
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
+import LogsPage from "./pages/LogsPage";
 import StoryPage from "./pages/StoryPage";
 import StoryDisplay from "./pages/StoryDisplay"
 import SearchResults from "./pages/SearchResults";
@@ -25,6 +26,7 @@ function App() {
             <Route path="publish" element={<StoryDisplay />} />
             <Route path="search" element={<SearchResults />} />
             <Route path="about" element={<AboutPage />} />
+            <Route path="logs" element={<LogsPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
       </div>
