@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { value } = require("mongoose/lib/options/propertyOptions");
 
 const storySchema = new mongoose.Schema(
   {
@@ -29,8 +28,8 @@ const storySchema = new mongoose.Schema(
     likes: {
       type: Number,
       default: function getRandomInt() {
-        min = 5;
-        max = Math.floor(25);
+        const min = 5;
+        const max = Math.floor(25);
         let value = Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
         return value;
       },

@@ -12,7 +12,7 @@ const tagSchema = new mongoose.Schema(
 );
 
 if (!tagSchema.options.toObject) tagSchema.options.toObject = {};
-tagSchema.options.toObject.transform = function (doc, ret, options) {
+tagSchema.options.toObject.transform = function (doc, ret) {
   // remove the unused parameters of every document before returning the result
   delete ret._id;
   delete ret.createdAt;
