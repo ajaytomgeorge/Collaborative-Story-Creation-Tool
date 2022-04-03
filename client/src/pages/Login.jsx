@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import "../css/Login.css";
 
@@ -7,16 +7,20 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  const [errorText,setErrorText] = useState("");
   const [errorInfo, setErrorInfo] = useState(
     "Invalid Credentials. Please retry"
   );
+
+  const navigate = useNavigate();
+
 
   function validateForm() {
     return email.length > 4 && password.length > 4;
   }
 
   function handleSubmit(event) {
-
+    
     event.preventDefault();
     const requestOptions = {
       method: "POST",
@@ -26,12 +30,19 @@ export default function Login() {
     fetch("http://localhost:8080/auth/login", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setShow(true);
-      });
+        if("error" in data){
+          setErrorText(data["error"])
+          setShow(true);
+        }else{
+          localStorage.setItem('token', JSON.stringify(data))
+          navigate('/')
+        }
+        
+      })
+      .catch(err => console.error(err));
   }
 
-  function AlertDismissible({ errorText }) {
+  function AlertDismissible({errorText}) {
     return (
       <Alert variant="danger" onClose={() => setShow(false)} dismissible>
         <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
@@ -45,7 +56,7 @@ export default function Login() {
       <div className="auth_inner">
         <form onSubmit={handleSubmit}>
           <h3>Login</h3>
-          {show && <AlertDismissible errorText={errorInfo} />}
+          {show && <AlertDismissible errorText={errorText} />}
           <div className="form-group">
             <label>Email address</label>
             <input
