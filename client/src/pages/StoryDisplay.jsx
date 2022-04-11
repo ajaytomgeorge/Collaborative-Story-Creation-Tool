@@ -76,13 +76,6 @@ export default function TextEditor() {
     const contents = quill.getContents();
     setContent(contents);
 
-    setTimeout(function () {
-      setTimeout(() => {
-        quill.setContents(contents);
-      }, 2000);
-      quill.setText("test");
-    }, 2000);
-    console.log(contents);
   };
 
   const handleOnChange = (position) => {
@@ -122,7 +115,7 @@ export default function TextEditor() {
           }}
           onClick={saveStoryData}
         >
-          Edit
+          Save
         </Button>
       </Container>
       <Form >

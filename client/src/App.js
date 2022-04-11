@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import LogsPage from "./pages/LogsPage";
 import StoryDisplay from "./pages/StoryDisplay"
+import StoryRead from "./pages/StoryRead"
 import SearchResults from "./pages/SearchResults";
 
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="sign-up" element={<SignUp/>} />
             <Route index element={<HomePage />} />
             <Route path="publish" element={<StoryDisplay />} />
+            <Route path="read/:id" element={<StoryRead />} />
             <Route path="search/:searchString" element={<SearchResults/>} />
             <Route path="about" element={<AboutPage />} />
             <Route path="logs" element={<LogsPage />} />
