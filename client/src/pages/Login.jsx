@@ -34,7 +34,7 @@ export default function Login() {
   function AlertDismissible({ errorText }) {
     return (
       <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+        <Alert.Heading>Oops! You have entered incorrect credentials!</Alert.Heading>
         <p>{errorText}</p>
       </Alert>
     );
