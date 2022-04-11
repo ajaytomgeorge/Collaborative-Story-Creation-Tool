@@ -23,6 +23,7 @@ export default function LogsPage() {
         </Container>
         {logs.map((log) => {
           return (
+            // eslint-disable-next-line react/jsx-key
             <div>
               <Card border={`${log.comment ==="Created Document" ? "success" : "danger"}`} style={{ width: "18rem" }}>
                 <Card.Header> {log.createdAt}</Card.Header>

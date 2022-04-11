@@ -8,7 +8,6 @@ import SignUp from "./pages/SignUp";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import LogsPage from "./pages/LogsPage";
-import StoryPage from "./pages/StoryPage";
 import StoryDisplay from "./pages/StoryDisplay"
 import SearchResults from "./pages/SearchResults";
 

@@ -26,6 +26,7 @@ const SearchResults = () => {
 
         <Row xs={1} md={3} className="g-4">
           {results.map((result, idx) => (
+            // eslint-disable-next-line react/jsx-key
             <Col>
               <Card>
                 <Card.Img

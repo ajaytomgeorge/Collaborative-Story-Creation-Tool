@@ -8,6 +8,7 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [errorInfo, setErrorInfo] = useState(
     "Invalid Credentials. Please retry"
   );
@@ -31,6 +32,7 @@ export default function SignUp() {
       });
   }
 
+  // eslint-disable-next-line react/prop-types
   function AlertDismissible({ errorText }) {
     return (
       <Alert variant="danger" dismissible>
