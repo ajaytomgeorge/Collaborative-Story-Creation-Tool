@@ -31,6 +31,8 @@ app.use(cors({
 if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
 }
+app.use(express.json({ extended: false, limit: '50mb' }))
+app.use(express.urlencoded({ limit: '50mb', extended: false, parameterLimit: 50000 }))
 
 app.use(json());
 app.use(urlencoded({ extended: false }));

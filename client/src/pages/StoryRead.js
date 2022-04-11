@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import {
@@ -29,9 +30,8 @@ const checkboxes = [
 export default function TextEditor() {
   const { id } = useParams();
   const [quill, setQuill] = useState();
-  const [content, setContent] = useState({});
+  const navigate = useNavigate();
   const [locked, setLocked] = useState(true);
-  const buttonRef = useRef();
 
   useEffect(() => {
     if (quill == null) return;
@@ -41,7 +41,6 @@ export default function TextEditor() {
         console.log(data);
         data.lock ? setLocked(true) : setLocked(false);
         quill.setContents(data.content);
-        buttonRef.current.disabled = true;
       });
   }, [id, quill]);
 
@@ -58,13 +57,16 @@ export default function TextEditor() {
     fetch(`http://localhost:8080/story/lock/${id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        alert(`"Story created with id ${data.data._id}"`);
+        console.log(data);  
       });
   }
 
   const editable = () => {
-    alert("User 12234asdfasdfa23r is editing the file");
+    LockFile();
+    window.confirm("We are initiating File Lock for your editing. Please be aware that only you can edit at this time. Your are being redirected")
+    navigate(`/publish/${id}`)
+    
+
   };
   const wrapperRef = useCallback((wrapper) => {
     if (wrapper == null) return;
@@ -85,10 +87,8 @@ export default function TextEditor() {
       <div className="container" ref={wrapperRef}></div>
       <Container>
         <Button
-          disabled
           tooltip="Click me to edit!!"
           icon="fas fa-plus"
-          ref={buttonRef}
           styles={{
             backgroundColor: darkColors.lightGrey,
             color: lightColors.black,

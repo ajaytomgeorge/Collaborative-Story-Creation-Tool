@@ -39,7 +39,7 @@ const checkboxes = [
 ];
 
 export default function TextEditor() {
-  const { id: documentId } = useParams();
+  const { id, nolock } = useParams();
   const [quill, setQuill] = useState();
   const [content, setContent] = useState({});
   const [locked, setLocked] = useState(true);
@@ -48,12 +48,25 @@ export default function TextEditor() {
   );
 
   useEffect(() => {
-    if (quill == null) return;
-  }, [documentId, quill]);
+    if (quill == null || id == null) return;
+    fetch(`http://localhost:8080/story/get/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (!nolock) {
+          data.lock ? setLocked(true) : setLocked(false);
+          console.log("Locked")
+        }
+        else{
+          console.log("Unlockd for editor")
 
-  const formTest = async (event) => {
-    const tags = checkboxes.filter((value, index) => checkedState[index]);
+        }
+        quill.setContents(data.content);
+      });
+  }, [id, quill]);
 
+  const formTest = async () => {
+    const tags = checkboxes.filter((_, index) => checkedState[index]);
 
     const requestOptions = {
       method: "POST",
@@ -68,14 +81,13 @@ export default function TextEditor() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        alert(`"Story created with id ${data.data._id}"`)
+        alert(`"Story created with id ${data.data._id}"`);
       });
   };
 
   const saveStoryData = () => {
     const contents = quill.getContents();
     setContent(contents);
-
   };
 
   const handleOnChange = (position) => {
@@ -84,8 +96,6 @@ export default function TextEditor() {
     );
     setCheckedState(updatedCheckedState);
   };
-
-
 
   const wrapperRef = useCallback((wrapper) => {
     if (wrapper == null) return;
@@ -118,7 +128,7 @@ export default function TextEditor() {
           Save
         </Button>
       </Container>
-      <Form >
+      <Form>
         <div
           style={{ display: "flex", justifyContent: "center" }}
           key={`inline-switch`}
@@ -139,8 +149,7 @@ export default function TextEditor() {
         <div style={{ display: "grid", placeItems: "center" }}>
           <BootstrapButton
             style={{ backgroundColor: "Blue", width: "48%" }}
-            onClick= {() => formTest()}
-           
+            onClick={() => formTest()}
           >
             Submit
           </BootstrapButton>
