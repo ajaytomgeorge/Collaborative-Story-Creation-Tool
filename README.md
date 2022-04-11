@@ -2,37 +2,38 @@
 
 ## Description 
 
-#### User stories: 
-i. A user signs into their online account, edits an existing or creates a new story and saves this story in an online database. 
+#### User Stories: 
+1. A user signs into their online account, edits an existing or creates a new story and saves this story in an online database. 
 For now, a story has a title, a main text and contextual annotation in the form of tags.  
 A story can have multiple co-called snapshots (organised as an ordered list) that represent selective key events in that story 
 that are especially important (e.g. an assembly of people or a disastrous event) and that could be drawn as a painting.   
 For now, the snapshot is represented as a text. Each of these snapshots can have multiple links to resources (e.g. to 3D objects, Wikipedia articles scribing locations or people, pictures etc.) that are part of this snapshot.  
-ii. Users may wish to collaborate in the creation and modification of stories.
+
+2. Users may wish to collaborate in the creation and modification of stories.
 All users do have access to all stories for viewing and editing, however, a story (with associated snapshots and resources) 
-can only be edited by one user at any time. If a user edits, others can only view.  iii. A central log is kept that keeps record of all views and edits 
+can only be edited by one user at any time. If a user edits, others can only view. A central log is kept that keeps record of all views and edits 
 made with information about time, users and actions.
 
 ## Features
 
 #### Frontend:
-Unittests
-Bootsrap for responsiveness
-Floating icons package
-quilljs
-Reack hooks- useEffect, useParams, 
-External Library - useQuery
-Eslint for code quality and Linitng	
-jsconfig.json for intellisense
-
+~~~Unittests
+-Bootsrap for responsiveness
+-Floating icons package
+-quilljs
+-Reack hooks- useEffect, useParams, 
+-External Library - useQuery
+-Eslint for code quality and Linitng	
+-jsconfig.json for intellisense
+~~~
 #### Backend:
-Unittests
-Middlewares for validation for all routess
-asynchandler
-JWT token
-nodemon
-Eslint for code quality and Linitng
-
+~~~Unittests
+-Middlewares for validation for all routess
+-asynchandler
+-JWT token
+-nodemon
+-Eslint for code quality and Linitng
+~~~
 ## Screenshots
 
 #### Home Page
@@ -51,7 +52,7 @@ Eslint for code quality and Linitng
 
 ![signup](https://user-images.githubusercontent.com/8169460/162776912-a10108c1-f34d-444b-a9a5-b0c1ddec500d.png)
 
-#### Search Page
+#### Search Results Page
 
 ![search](https://user-images.githubusercontent.com/8169460/162776957-00f98182-c657-43df-8c69-bd0bfcf4db41.png)
 
