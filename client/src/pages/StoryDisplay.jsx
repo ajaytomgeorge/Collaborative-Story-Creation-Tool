@@ -39,10 +39,10 @@ const checkboxes = [
 ];
 
 export default function TextEditor() {
-  const { id, nolock } = useParams();
+  const { id, lock } = useParams();
   const [quill, setQuill] = useState();
   const [content, setContent] = useState({});
-  const [locked, setLocked] = useState(true);
+  const [locked, setLocked] = useState(false);
   const [checkedState, setCheckedState] = useState(
     new Array(checkboxes.length).fill(false)
   );
@@ -53,20 +53,36 @@ export default function TextEditor() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        if (!nolock) {
+        if (lock) {
           data.lock ? setLocked(true) : setLocked(false);
-          console.log("Locked")
-        }
-        else{
-          console.log("Unlockd for editor")
-
+          console.log("Locked");
+        } else {
+          console.log("Unlockd for editor");
         }
         quill.setContents(data.content);
       });
   }, [id, quill]);
 
-  const formTest = async () => {
+  const createOrUpdateDocument = async () => {
     const tags = checkboxes.filter((_, index) => checkedState[index]);
+
+    if (id) {
+      const putOptions = {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content, tags, lock:false }),
+      };
+      fetch(`http://localhost:8080/story/update/${id}`, putOptions).then(
+        (response) => response.json()
+      ).then((data) => {
+        console.log(data);
+        alert(`"Story updated with id ${data._id}"`);
+      });
+      return;
+    }
 
     const requestOptions = {
       method: "POST",
@@ -116,7 +132,7 @@ export default function TextEditor() {
       <div className="container" ref={wrapperRef}></div>
       <Container>
         <Button
-          tooltip="The big plus button!"
+          tooltip="Save ypur progress!"
           icon="fas fa-plus"
           rotate={true}
           styles={{
@@ -149,7 +165,7 @@ export default function TextEditor() {
         <div style={{ display: "grid", placeItems: "center" }}>
           <BootstrapButton
             style={{ backgroundColor: "Blue", width: "48%" }}
-            onClick={() => formTest()}
+            onClick={() => createOrUpdateDocument()}
           >
             Submit
           </BootstrapButton>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import "../css/Login.css";
 
@@ -7,9 +7,12 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  const [errorText,setErrorText] = useState("");
   function validateForm() {
     return email.length > 4 && password.length > 4;
   }
+
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
 
@@ -23,9 +26,13 @@ export default function Login() {
     fetch("http://localhost:8080/auth/login", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.success.user.token);
-        localStorage.setItem("token", data.success.user.token)
-        setShow(true);
+        if("error" in data){
+          setErrorText(data["error"])
+          setShow(true);
+        }else{
+          console.log(data.success.user.token);
+          navigate('/')
+        }
       });
   }
 
@@ -44,7 +51,7 @@ export default function Login() {
       <div className="auth_inner">
         <form onSubmit={handleSubmit}>
           <h3>Login</h3>
-          {show && <AlertDismissible errorText={"invalidCredentails"} />}
+          {show && <AlertDismissible errorText={errorText} />}
           <div className="form-group">
             <label>Email address</label>
             <input

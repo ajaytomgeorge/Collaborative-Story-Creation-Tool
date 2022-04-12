@@ -57,16 +57,22 @@ export default function TextEditor() {
     fetch(`http://localhost:8080/story/lock/${id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);  
+        console.log(data);
       });
   }
 
   const editable = () => {
-    LockFile();
-    window.confirm("We are initiating File Lock for your editing. Please be aware that only you can edit at this time. Your are being redirected")
-    navigate(`/publish/${id}`)
-    
-
+    if (!locked) {
+      LockFile();
+      window.confirm(
+        "We are initiating File Lock for your editing. Please be aware that only you can edit at this time. Your are being redirected"
+      );
+      navigate(`/publish/${id}/false`);
+    } else {
+      alert(
+        "File Locked! The given file is being edited by another user. It will be available for editing when the user submits his updates"
+      );
+    }
   };
   const wrapperRef = useCallback((wrapper) => {
     if (wrapper == null) return;
