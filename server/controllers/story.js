@@ -42,10 +42,13 @@ exports.createStory = asyncHandler(async (req, res) => {
       tags: tags_ids,
     });
 
+    const data = await Story.findById(created_story._id).populate("tags");
+    res.set("Connection", "close");
+    res.status(201);
     res.json({
       status: true,
       status_code: 201,
-      data: await Story.findById(created_story._id).populate("tags"),
+      data: data,
       message: "Story created successfully",
     });
   } catch (error) {
@@ -85,8 +88,6 @@ exports.updateStory = asyncHandler(async (req, res) => {
   const id = req.params.id;
   const senderId = req.user.id;
 
-  
-
   const { title, text, content, lock } = req.body;
   try {
     const updatedStory = await Story.findByIdAndUpdate(
@@ -101,15 +102,13 @@ exports.updateStory = asyncHandler(async (req, res) => {
     );
     const user = await User.findOne({ userId: senderId });
 
-
     await Logs.create({
       storyId: updatedStory._id,
       userId: user._id,
       username: user.username,
       comment: "Updated document",
-      data: {}
+      data: {},
     });
-    
 
     res.json(updatedStory);
   } catch (error) {

@@ -18,6 +18,7 @@
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;
+    border-radius: 60px;
   }
   
   .about-section {
@@ -29,6 +30,7 @@
   
   .container {
     padding: 0 16px;
+    text-align: center;
   }
   
   .container::after, .row::after {
@@ -50,7 +52,8 @@
     background-color: #000;
     text-align: center;
     cursor: pointer;
-    width: 100%;
+    width: 80%;
+    border-radius: 40px;
   }
   
   .button:hover {

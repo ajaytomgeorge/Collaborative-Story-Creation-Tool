@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Alert } from "react-bootstrap";
-
+import { useNavigate } from "react-router-dom";
 import "../css/SignUp.css";
 
 export default function SignUp() {
@@ -8,9 +8,13 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  const [errorText,setErrorText] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [errorInfo, setErrorInfo] = useState(
     "Invalid Credentials. Please retry"
   );
+
+  const navigate = useNavigate();
 
   function validateForm() {
     return email.length > 4 && password.length > 4;
@@ -26,11 +30,17 @@ export default function SignUp() {
     fetch("http://localhost:8080/auth/register", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setShow(true);
+        if("error" in data){
+          setErrorText(data["error"])
+          setShow(true);
+        }else{
+          console.log(data.success.user.token);
+          navigate('/')
+        }
       });
   }
 
+  // eslint-disable-next-line react/prop-types
   function AlertDismissible({ errorText }) {
     return (
       <Alert variant="danger" dismissible>
@@ -45,7 +55,7 @@ export default function SignUp() {
       <div className="auth_inner">
         <form onSubmit={handleSubmit}>
           <h3>Sign Up</h3>
-          {show && <AlertDismissible errorText={errorInfo} />}
+          {show && <AlertDismissible errorText={errorText} />}
           <div className="form-group">
             <label>Full name</label>
             <input
