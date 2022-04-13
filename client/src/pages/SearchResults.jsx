@@ -28,7 +28,7 @@ const SearchResults = () => {
           {results.map((result, idx) => (
             // eslint-disable-next-line react/jsx-key
             <Col key={idx}>
-              <Card>
+              <Card style ={{borderRadius: "10px"}}>
                 <Card.Img
                   variant="top"
                   src={`https://picsum.photos/321/160?random=${idx}`}
