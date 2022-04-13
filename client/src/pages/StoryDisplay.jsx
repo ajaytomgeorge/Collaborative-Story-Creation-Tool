@@ -10,7 +10,7 @@ import {
 } from "react-floating-action-button";
 import { useParams } from "react-router-dom";
 
-import { Alert, Button as BootstrapButton, Form } from "react-bootstrap";
+import { Modal, Button as BootstrapButton, Form } from "react-bootstrap";
 
 import "../css/StoryDisplay.css";
 
@@ -46,6 +46,11 @@ export default function TextEditor() {
   const [checkedState, setCheckedState] = useState(
     new Array(checkboxes.length).fill(false)
   );
+  const [show, setShow] = useState(false);
+  const [title, setTitle] = useState("");
+  const [cardInfo, setCardInfo] = useState("");
+
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     if (quill == null || id == null) return;
@@ -63,7 +68,7 @@ export default function TextEditor() {
       });
   }, [id, quill]);
 
-  const createOrUpdateDocument = async () => {
+  const createOrUpdateDocument =  () => {
     const tags = checkboxes.filter((_, index) => checkedState[index]);
 
     if (id) {
@@ -75,12 +80,14 @@ export default function TextEditor() {
         },
         body: JSON.stringify({ content, tags, lock:false }),
       };
-      fetch(`/story/update/${id}`, putOptions).then(
-        (response) => response.json()
-      ).then((data) => {
-        console.log(data);
-        alert(`"Story updated with id ${data._id}"`);
-      });
+      fetch(`/story/update/${id}`, putOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("updated",data);
+          setTitle("Updated! File have been updated in the database");
+          setCardInfo(`Story updated with id ${data._id}`);
+          handleShow();
+        });
       return;
     }
 
@@ -97,13 +104,22 @@ export default function TextEditor() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        alert(`"Story created with id ${data.data._id}"`);
+        setTitle("Created! File have been saved in database");
+        setCardInfo(`Story created with id ${data.data._id}`);
+        handleShow();
       });
   };
 
   const saveStoryData = () => {
+    console.log("save story data called")
     const contents = quill.getContents();
+    console.log(contents)
+
     setContent(contents);
+    setTitle("Story Progress has been saved");
+    setCardInfo("Please be aware that unless you submit the file wont be published  ");
+
+    handleShow();
   };
 
   const handleOnChange = (position) => {
@@ -111,6 +127,31 @@ export default function TextEditor() {
       index === position ? !item : item
     );
     setCheckedState(updatedCheckedState);
+  };
+
+  function giveAlert() {
+    return (
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>{title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{cardInfo}</Modal.Body>
+        <Modal.Footer>
+          <BootstrapButton variant="secondary" onClick={handleClose}>
+            OK
+          </BootstrapButton>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
+  const handleClose = () => {
+    setShow(false);
   };
 
   const wrapperRef = useCallback((wrapper) => {
@@ -129,10 +170,11 @@ export default function TextEditor() {
   }, []);
   return (
     <div>
+      {giveAlert()}
       <div className="container" ref={wrapperRef}></div>
       <Container>
         <Button
-          tooltip="Save ypur progress!"
+          tooltip="Save your progress!"
           icon="fas fa-plus"
           rotate={true}
           styles={{

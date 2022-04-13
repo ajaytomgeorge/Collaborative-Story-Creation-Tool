@@ -5,13 +5,13 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import {
   Container,
-  Button,
+  Button as floatingButton,
   lightColors,
   darkColors,
 } from "react-floating-action-button";
 import { useParams } from "react-router-dom";
 
-import { Alert, Button as BootstrapButton, Form } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 
 import "../css/StoryDisplay.css";
 
@@ -32,6 +32,15 @@ export default function TextEditor() {
   const [quill, setQuill] = useState();
   const navigate = useNavigate();
   const [locked, setLocked] = useState(true);
+  const [show, setShow] = useState(false);
+  const [title, setTitle] = useState("Locked File");
+  const [cardInfo, setcardInfo] = useState(
+    "The given file is being edited by another user. It will be available for editing when the user submits his updates"
+  );
+
+  const handleClose = () =>{ setShow(false);
+    navigate(`/publish/${id}/false`);}
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     if (quill == null) return;
@@ -41,6 +50,9 @@ export default function TextEditor() {
         console.log(data);
         data.lock ? setLocked(true) : setLocked(false);
         quill.setContents(data.content);
+      })
+      .catch((error) => {
+        console.log("error occured");
       });
   }, [id, quill]);
 
@@ -60,18 +72,39 @@ export default function TextEditor() {
         console.log(data);
       });
   }
+  function giveAlert() {
+    return (
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>{title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{cardInfo}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            I Understand
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 
   const editable = () => {
     if (!locked) {
       LockFile();
-      window.confirm(
-        "We are initiating File Lock for your editing. Please be aware that only you can edit at this time. Your are being redirected"
+      setTitle("File Lock Initialized");
+      setcardInfo(
+        "You are being redirected. The file has been locked for you editing, please note that other users wont be able to edit until you submit"
       );
-      navigate(`/publish/${id}/false`);
+      handleShow();
+
+      
     } else {
-      alert(
-        "File Locked! The given file is being edited by another user. It will be available for editing when the user submits his updates"
-      );
+      handleShow();
     }
   };
   const wrapperRef = useCallback((wrapper) => {
@@ -90,6 +123,7 @@ export default function TextEditor() {
   }, []);
   return (
     <div>
+      {giveAlert()}
       <div className="container" ref={wrapperRef}></div>
       <Container>
         <Button
