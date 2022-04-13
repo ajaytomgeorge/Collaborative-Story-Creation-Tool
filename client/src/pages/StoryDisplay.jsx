@@ -49,7 +49,7 @@ export default function TextEditor() {
 
   useEffect(() => {
     if (quill == null || id == null) return;
-    fetch(`http://localhost:8080/story/get/${id}`)
+    fetch(`/story/get/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -75,7 +75,7 @@ export default function TextEditor() {
         },
         body: JSON.stringify({ content, tags, lock:false }),
       };
-      fetch(`http://localhost:8080/story/update/${id}`, putOptions).then(
+      fetch(`/story/update/${id}`, putOptions).then(
         (response) => response.json()
       ).then((data) => {
         console.log(data);
@@ -93,7 +93,7 @@ export default function TextEditor() {
       body: JSON.stringify({ content, tags }),
     };
 
-    fetch("http://localhost:8080/story/create", requestOptions)
+    fetch("/story/create", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

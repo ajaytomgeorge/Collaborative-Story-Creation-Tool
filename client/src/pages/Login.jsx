@@ -23,7 +23,7 @@ export default function Login() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     };
-    fetch("http://localhost:8080/auth/login", requestOptions)
+    fetch("/auth/login", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if("error" in data){

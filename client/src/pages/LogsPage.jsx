@@ -6,7 +6,7 @@ export default function LogsPage() {
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/logs")
+    fetch("/logs")
       .then((response) => response.json())
       .then((data) => {
         setLogs(data);

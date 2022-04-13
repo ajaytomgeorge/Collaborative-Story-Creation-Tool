@@ -35,7 +35,7 @@ export default function TextEditor() {
 
   useEffect(() => {
     if (quill == null) return;
-    fetch(`http://localhost:8080/story/get/${id}`)
+    fetch(`/story/get/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -54,7 +54,7 @@ export default function TextEditor() {
       body: JSON.stringify({ lock: true }),
     };
 
-    fetch(`http://localhost:8080/story/lock/${id}`, requestOptions)
+    fetch(`/story/lock/${id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

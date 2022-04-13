@@ -27,7 +27,7 @@ export default function SignUp() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: name, email, password }),
     };
-    fetch("http://localhost:8080/auth/register", requestOptions)
+    fetch("/auth/register", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if("error" in data){

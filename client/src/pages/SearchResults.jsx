@@ -8,7 +8,7 @@ const SearchResults = () => {
   const [results, setResults] = useState([]);
   const { searchString } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:8080/story/search/${searchString}`)
+    fetch(`/story/search/${searchString}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -27,7 +27,7 @@ const SearchResults = () => {
         <Row xs={1} md={3} className="g-4">
           {results.map((result, idx) => (
             // eslint-disable-next-line react/jsx-key
-            <Col>
+            <Col key={idx}>
               <Card>
                 <Card.Img
                   variant="top"
