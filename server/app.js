@@ -64,7 +64,7 @@ process.on("Main Process unhandledRejection", (err, promise) => {
   server.close(() => process.exit(1));
 });
 
-server.listen(8080, () => {
+server.listen(8080,'0.0.0.0', () => {
   console.log("Backend Initialized");
 });
 module.exports = { app, server };
