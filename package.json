@@ -5,7 +5,7 @@
     "main": "node server/app.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "postinstall": "cd server && npm run build",
+      "postinstall": "cd client && npm run build",
       "start": "node server/app.js",
       "debug": "node app.js"
     },
