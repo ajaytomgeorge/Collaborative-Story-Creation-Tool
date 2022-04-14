@@ -55,7 +55,7 @@ export default function TextEditor() {
         data.lock ? setLocked(true) : setLocked(false);
         quill.setContents(data.content);
         const tags = data.tags.map(tag => tag.name)
-        quill.insertText(0, data.createdAt+" \n "+ `${tags.join("     ")} \n `,  {
+        quill.insertText(0, data.createdAt+"\n"+ `${tags.join(" ")}\n`,  {
           'color': '#303F9F',
           'italic': true
         });
