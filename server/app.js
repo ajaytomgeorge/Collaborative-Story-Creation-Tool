@@ -23,7 +23,7 @@ const app = express();
 const server = http.createServer(app);
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000","https://storyfactoryadvanced.herokuapp.com/"],
     credentials: true,
   })
 );
@@ -41,11 +41,11 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, "../client/build")));
+// app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get('/*', function(req,res) {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
+// app.get('/*', function(req,res) {
+//   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+// });
 app.use("/auth", authRouter);
 app.use("/tags", tagsRouter);
 app.use("/story", storyRouter);
@@ -64,7 +64,7 @@ process.on("Main Process unhandledRejection", (err, promise) => {
   server.close(() => process.exit(1));
 });
 
-server.listen(process.env.PORT || 5000,'0.0.0.0', () => {
+server.listen(process.env.PORT || 8080,'0.0.0.0', () => {
   console.log("Backend Initialized");
 });
 module.exports = { app, server };
