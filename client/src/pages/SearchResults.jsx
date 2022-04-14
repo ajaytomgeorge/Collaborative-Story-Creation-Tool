@@ -10,7 +10,7 @@ const SearchResults = () => {
   useEffect(() => {
     fetch(`/story/search/${searchString}`)
       .then((res) => {
-        console.log("response is ", res.text())
+        console.log("response is ", res)
         return res.json()})
       .then((data) => {
         console.log(data);

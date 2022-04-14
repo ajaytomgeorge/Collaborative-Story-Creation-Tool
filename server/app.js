@@ -43,14 +43,15 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get('/*', function(req,res) {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
+
 app.use("/auth", authRouter);
 app.use("/tags", tagsRouter);
 app.use("/story", storyRouter);
 app.use("/logs", logsRouter);
 
+app.get('/*', function(req,res) {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 app.get("/", (req, res) => {
   res.send("API is running");
 });
