@@ -47,16 +47,21 @@ export default function TextEditor() {
     fetch(`/story/get/${id}`)
       .then((response) => {
         
-        console.log("response is ", response)
+        // console.log("response is ", response)
         return response.json()
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         data.lock ? setLocked(true) : setLocked(false);
         quill.setContents(data.content);
+        const tags = data.tags.map(tag => tag.name)
+        quill.insertText(0, data.createdAt+" \n "+ `${tags.join("     ")} `,  {
+          'color': '#303F9F',
+          'italic': true
+        });
       })
       .catch((error) => {
-        console.log("error occured in story read", error);
+        // console.log("error occured in story read", error);
       });
   }, [id, quill]);
 
