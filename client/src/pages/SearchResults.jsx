@@ -9,7 +9,9 @@ const SearchResults = () => {
   const { searchString } = useParams();
   useEffect(() => {
     fetch(`/story/search/${searchString}`)
-      .then((res) => res.json())
+      .then((res) => {
+        console.log("response is ", res)
+        return res.json()})
       .then((data) => {
         console.log(data);
         setResults(data);

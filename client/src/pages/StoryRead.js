@@ -45,7 +45,11 @@ export default function TextEditor() {
   useEffect(() => {
     if (quill == null) return;
     fetch(`/story/get/${id}`)
-      .then((response) => response.json())
+      .then((response) => {
+        
+        console.log("response is ", response)
+        return response.json()
+      })
       .then((data) => {
         console.log(data);
         data.lock ? setLocked(true) : setLocked(false);
