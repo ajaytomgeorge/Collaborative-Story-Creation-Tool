@@ -21,7 +21,7 @@ export default function Tags(){
             <div key = {index}>
               <a
               key={index}
-              href="/home"
+              href={`/search/${key}`}
               className="col text-center category__link"
             >
               <div className="category__img shadow">

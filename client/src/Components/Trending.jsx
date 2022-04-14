@@ -21,7 +21,7 @@ export default function Trending() {
         {Object.keys(imgPaths).map((key, index) => (
           <div key = {index}>
             <a
-              href="/recipe/<%= recipe._id %>"
+              href="/read/62585a2ba52ab08c010ba302"
               className="col text-center category__link"
             >
               <div className="category__img category__img--large shadow">
