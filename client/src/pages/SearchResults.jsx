@@ -13,7 +13,9 @@ const SearchResults = () => {
       .then((data) => {
         console.log(data);
         setResults(data);
-      });
+      }).catch((error) => {
+        console.log("error occured in search results", error);
+      });;
   }, [searchString]);
 
   return (

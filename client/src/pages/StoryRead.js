@@ -52,7 +52,7 @@ export default function TextEditor() {
         quill.setContents(data.content);
       })
       .catch((error) => {
-        console.log("error occured");
+        console.log("error occured in story read", error);
       });
   }, [id, quill]);
 
