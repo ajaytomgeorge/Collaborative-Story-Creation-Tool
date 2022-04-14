@@ -13,7 +13,7 @@ export default function Trending() {
     <Container className="mt-4">
       <div className="d-flex mb-2 align-items-center">
         <h2>Trending Stories</h2>
-        <a href="/search" className="ms-auto">
+        <a href={`/search/text`} className="ms-auto">
           View More
         </a>
       </div>
