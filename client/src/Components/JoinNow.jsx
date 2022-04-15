@@ -6,7 +6,7 @@ export default function JoinNow(){
           <img
             src={require("../assets/reading_all.png")}
             className="d-block mx-auto mb-4 img-fluid"
-            alt="Publish your recipe for FREE today"
+            alt="Publish your Story for FREE today"
             width="566"
             height="208"
             loading="lazy"

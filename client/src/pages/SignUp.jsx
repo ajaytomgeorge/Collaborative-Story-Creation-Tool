@@ -34,7 +34,7 @@ export default function SignUp() {
           setErrorText(data["error"])
           setShow(true);
         }else{
-          console.log(data.success.user.token);
+          // console.log(data.success.user.token);
           navigate('/')
         }
       });

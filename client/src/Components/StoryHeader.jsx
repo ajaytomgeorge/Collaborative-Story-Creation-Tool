@@ -5,7 +5,7 @@ export default function StoryHeader() {
   const handleChange = (event) => {
     let fieldName = event.target.name;
     let fleldVal = event.target.value;
-    console.log(fieldName, fleldVal);
+    // console.log(fieldName, fleldVal);
   };
   return (
     <React.Fragment>

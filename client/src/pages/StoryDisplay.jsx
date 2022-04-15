@@ -57,12 +57,12 @@ export default function TextEditor() {
     fetch(`/story/get/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         if (lock) {
           data.lock ? setLocked(true) : setLocked(false);
-          console.log("Locked");
+          //console.log("Locked");
         } else {
-          console.log("Unlockd for editor");
+          //console.log("Unlockd for editor");
         }
         quill.setContents(data.content);
       });
@@ -83,7 +83,7 @@ export default function TextEditor() {
       fetch(`/story/update/${id}`, putOptions)
         .then((response) => response.json())
         .then((data) => {
-          console.log("updated",data);
+          // console.log("updated",data);
           setTitle("Updated! File have been updated in the database");
           setCardInfo(`Story updated with id ${data._id}`);
           handleShow();
@@ -103,7 +103,7 @@ export default function TextEditor() {
     fetch("/story/create", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setTitle("Created! File have been saved in database");
         setCardInfo(`Story created with id ${data.data._id}`);
         handleShow();
@@ -111,9 +111,9 @@ export default function TextEditor() {
   };
 
   const saveStoryData = () => {
-    console.log("save story data called")
+    // console.log("save story data called")
     const contents = quill.getContents();
-    console.log(contents)
+    // console.log(contents)
 
     setContent(contents);
     setTitle("Story Progress has been saved");

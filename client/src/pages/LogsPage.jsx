@@ -10,7 +10,7 @@ export default function LogsPage() {
       .then((response) => response.json())
       .then((data) => {
         setLogs(data);
-        console.log(data);
+        // console.log(data);
       });
   }, []);
 

@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Col, Row, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 import Header from "../Components/Header";
 
 const SearchResults = () => {
   const [results, setResults] = useState([]);
   const { searchString } = useParams();
+  const navigate = useNavigate();
+
+  const onClick = (id) => {
+    navigate(`/read/${id}`);
+  };
+
   useEffect(() => {
     fetch(`/story/search/${searchString}`)
       .then((res) => {
-        console.log("response is ", res)
-        return res.json()})
+        console.log("response is ", res);
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
         setResults(data);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log("error occured in search results", error);
       });
   }, [searchString]);
@@ -32,21 +41,28 @@ const SearchResults = () => {
           {results.map((result, idx) => (
             // eslint-disable-next-line react/jsx-key
             <Col key={idx}>
-              <Card style ={{borderRadius: "10px"}}>
+              <Card
+                style={{ borderRadius: "10px", cursor: "pointer" }}
+                onClick={() => onClick(result._id)}
+              >
                 <Card.Img
                   variant="top"
                   src={`https://picsum.photos/321/160?random=${idx}`}
                 />
                 <Card.Body>
-                  <Card.Title>{result.title}  ❤️{result.likes}</Card.Title>
+                  <Card.Title>
+                    {result.title ? result.title: "Lorem Epsum" } ❤️{result.likes}
+                  </Card.Title>
                   <Card.Text>
-                  <div style= {{fontSize:"14px", fontWeight :"100" }}>
-                    {result.text} <br/>
+                    <div style={{ fontSize: "14px", fontWeight: "100" }}>
+                      {result.text
+                        ? result.text
+                        : "This was  a test insertion. Fed to the database during testing. Available in the databse, but content is empty or null"}{" "}
+                      <br />
                     </div>
-                    <div style= {{fontSize:"12px"}}>
-                    {result.createdAt}  <br/>
+                    <div style={{ fontSize: "12px" }}>
+                      {result.createdAt} <br />
                     </div>
-                    
                   </Card.Text>
                 </Card.Body>
               </Card>
