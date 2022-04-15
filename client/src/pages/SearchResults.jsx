@@ -13,7 +13,7 @@ const SearchResults = ({user}) => {
   const navigate = useNavigate();
 
   const onClick = (id) => {
-    navigate(`/read/${id}`);
+    navigate(`/renpmad/${id}`);
   };
 
   useEffect(() => {
