@@ -1,5 +1,9 @@
 import { Container } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
+
 export default function JoinNow(){
+  const navigate = useNavigate();
+
     return (
         <Container>
         <section className="px-4 py-5 my-5 text-center ml-5">
@@ -17,7 +21,7 @@ export default function JoinNow(){
               Let the world come to you
             </p>
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <a href="/publish" className="btn btn-primary btn-dark btn-lg">
+              <a  onClick={()=>{navigate("/publish")}} className="btn btn-primary btn-dark btn-lg">
                 Submit Story
               </a>
             </div>

@@ -31,10 +31,7 @@ const TOOLBAR_OPTIONS = [
 const checkboxes = [
   "Technology",
   "Kids",
-  "Fiction",
-  "People",
   "Movies",
-  "History",
   "Politics",
   "Music",
   "Science",
