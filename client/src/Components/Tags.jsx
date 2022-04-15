@@ -12,7 +12,7 @@ export default function Tags(){
     return (<Container>
         <div className="d-flex mb-2 align-items-center">
           <h2>Watchful Tags</h2>
-          <a href="/search" className="ms-auto">
+          <a href="/search/text" className="ms-auto">
             View More
           </a>
         </div>
@@ -21,7 +21,7 @@ export default function Tags(){
             <div key = {index}>
               <a
               key={index}
-              href="/home"
+              href="/search/text"
               className="col text-center category__link"
             >
               <div className="category__img shadow">
