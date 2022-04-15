@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Col, Row, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+
 
 import Header from "../Components/Header";
 
-const SearchResults = () => {
+const SearchResults = ({user}) => {
   const [results, setResults] = useState([]);
   const { searchString } = useParams();
   const navigate = useNavigate();
@@ -15,6 +17,9 @@ const SearchResults = () => {
   };
 
   useEffect(() => {
+    if (!user.auth){
+      navigate("/login")
+    }
     fetch(`/story/search/${searchString}`)
       .then((res) => {
         console.log("response is ", res);
@@ -72,6 +77,14 @@ const SearchResults = () => {
       </React.Fragment>
     </Container>
   );
+};
+
+SearchResults.defaultProps = {
+  user: {},
+};
+
+SearchResults.propTypes = {
+  user: PropTypes.object,
 };
 
 export default SearchResults;

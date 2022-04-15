@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Container, Form, ListGroup, Nav } from "react-bootstrap";
+import { UserContext } from '../Components/UserContext';
+
 
 export default function Header() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const { user, logout } = useContext(UserContext);
+
 
   const onFormSubmit = e => {
     e.preventDefault();
@@ -31,24 +35,25 @@ export default function Header() {
         className="col-12 col-md-auto mb-2 mt-0 justify-content-center mb-md-0"
       >
         <ListGroup.Item className="border-0 ">
-          <Nav.Link href="/" className="px-2  link-secondary">
+          <Nav.Link onClick={()=>{navigate("/")}} className="px-2  link-secondary">
             Home
           </Nav.Link>
         </ListGroup.Item>
         <ListGroup.Item className="border-0">
-          <Nav.Link href="/about" className="px-2 link-secondary">
+          <Nav.Link onClick={()=>{navigate("/about")}} className="px-2 link-secondary">
             About
           </Nav.Link>
         </ListGroup.Item>
         <ListGroup.Item className="border-0">
-          <Nav.Link href="/publish" className="px-2 link-secondary">
+          <Nav.Link onClick={()=>{navigate("/publish")}} className="px-2 link-secondary">
             Publish
           </Nav.Link>
         </ListGroup.Item>
         <ListGroup.Item className="border-0">
-          <Nav.Link href="/login" className="px-2 link-secondary">
-            Login
+          <Nav.Link onClick={()=>{user.auth?logout():navigate("/login")}} className="px-2 link-secondary">
+            {user.auth? "Logout": "Login"}
           </Nav.Link>
+          
         </ListGroup.Item>
       </ListGroup>
 
@@ -64,6 +69,9 @@ export default function Header() {
           autoFocus
         />
       </Form>
+      <Nav.Link onClick={()=>{navigate("/logs")}}>
+      {user.name}
+          </Nav.Link>
     </Container>
   );
 }

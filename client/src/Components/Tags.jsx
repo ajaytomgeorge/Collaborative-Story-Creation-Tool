@@ -6,11 +6,11 @@ const imgPaths ={
   "Kids":"kids.jpg",
   "Film":"film.jpg",
   "Science":"science.jpg",
-  "Politics":"politics.jpg",
+"Politics":"politics.jpg",
 }
 export default function Tags(){
     return (<Container>
-        <div className="d-flex mb-2 align-items-center">
+        <div className="d-flex mt-4 mb-2 align-items-center">
           <h2>Watchful Tags</h2>
           <a href={`/search/text`} className="ms-auto">
             View More

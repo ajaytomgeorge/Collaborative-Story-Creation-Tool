@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Card, Container } from "react-bootstrap";
 
-export default function LogsPage() {
+
+
+function LogsPage({user}) {
   const [logs, setLogs] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
+    
+    if (!user.auth){
+      navigate("/login")
+    }
     fetch("/logs")
       .then((response) => response.json())
       .then((data) => {
@@ -25,7 +34,7 @@ export default function LogsPage() {
           return (
             // eslint-disable-next-line react/jsx-key
             <div>
-              <Card border={`${log.comment ==="Created Document" ? "success" : "danger"}`} style={{ width: "18rem" }}>
+              <Card border={`${log.comment ==="Created Document" ? "success" : "danger"}`} style={{ width: "18rem" , borderRadius:"0px"}}>
                 <Card.Header> {log.createdAt}</Card.Header>
                 <Card.Body>
                   <Card.Title>{log.comment.toUpperCase()} </Card.Title>
@@ -49,3 +58,14 @@ export default function LogsPage() {
     </React.Fragment>
   );
 }
+
+
+LogsPage.defaultProps = {
+  user: {},
+};
+
+LogsPage.propTypes = {
+  user: PropTypes.object,
+};
+
+export default LogsPage;

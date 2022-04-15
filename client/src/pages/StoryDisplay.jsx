@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useCallback, useEffect, useState } from "react";
+
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import {
@@ -8,9 +9,10 @@ import {
   lightColors,
   darkColors,
 } from "react-floating-action-button";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Modal, Button as BootstrapButton, Form } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 import "../css/StoryDisplay.css";
 
@@ -38,7 +40,9 @@ const checkboxes = [
   "Science",
 ];
 
-export default function TextEditor() {
+function TextEditor({ user }) {
+  const navigate = useNavigate();
+ 
   const { id, lock } = useParams();
   const [quill, setQuill] = useState();
   const [content, setContent] = useState({});
@@ -53,6 +57,10 @@ export default function TextEditor() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
+    if (!user.auth){
+      navigate("/login")
+    }
+    
     if (quill == null || id == null) return;
     fetch(`/story/get/${id}`)
       .then((response) => response.json())
@@ -216,3 +224,14 @@ export default function TextEditor() {
     </div>
   );
 }
+
+
+TextEditor.defaultProps = {
+  user: {},
+};
+
+TextEditor.propTypes = {
+  user: PropTypes.object,
+};
+
+export default TextEditor;

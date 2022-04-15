@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import {
@@ -9,7 +8,9 @@ import {
   lightColors,
   darkColors,
 } from "react-floating-action-button";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
+
 
 import { Modal, Button } from "react-bootstrap";
 
@@ -27,10 +28,11 @@ const checkboxes = [
   "Science",
 ];
 
-export default function TextEditor() {
+function TextEditor({ user }) {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [quill, setQuill] = useState();
-  const navigate = useNavigate();
   const [locked, setLocked] = useState(true);
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("Locked File");
@@ -150,3 +152,15 @@ export default function TextEditor() {
     </div>
   );
 }
+
+
+
+TextEditor.defaultProps = {
+  user: {},
+};
+
+TextEditor.propTypes = {
+  user: PropTypes.object,
+};
+
+export default TextEditor;

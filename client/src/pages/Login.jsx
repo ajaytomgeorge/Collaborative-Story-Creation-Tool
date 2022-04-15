@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import "../css/Login.css";
+
+import { UserContext } from '../Components/UserContext';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const [errorText,setErrorText] = useState("");
+  
+  const { login } = useContext(UserContext);
+
   function validateForm() {
     return email.length > 4 && password.length > 4;
   }
@@ -30,7 +35,7 @@ export default function Login() {
           setErrorText(data["error"])
           setShow(true);
         }else{
-          // console.log(data.success.user.token);
+          login(data.success.user.username);
           navigate('/')
         }
       });
