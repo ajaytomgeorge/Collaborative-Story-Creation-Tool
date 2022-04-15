@@ -8,12 +8,20 @@ const imgPaths ={
   "Life of Sara":"trending_latern.jpg",
 }
 
+const imgId = {
+  "The Arrival":"6258c4d5bb9735b8723bdf77",
+  "Motorcycle Diaries":"6258d0adbb9735b8723bdf86",
+  "House in Woods":"6258d348bb9735b8723bdf8f",
+  "GOT":"6258d444bb9735b8723bdf9a",
+  "Life of Sara":"6258d574bb9735b8723bdfa5",
+}
+
 export default function Trending() {
   return (
     <Container className="mt-4">
       <div className="d-flex mb-2 align-items-center">
         <h2>Trending Stories</h2>
-        <a href={`/search/text`} className="ms-auto">
+        <a href="/search/love" className="ms-auto">
           View More
         </a>
       </div>
@@ -21,7 +29,7 @@ export default function Trending() {
         {Object.keys(imgPaths).map((key, index) => (
           <div key = {index}>
             <a
-              href="/read/62585a2ba52ab08c010ba302"
+              href={`/read/${imgId[key]}`}
               className="col text-center category__link"
             >
               <div className="category__img category__img--large shadow">
