@@ -31,7 +31,10 @@ const TOOLBAR_OPTIONS = [
 const checkboxes = [
   "Technology",
   "Kids",
+  "Fiction",
+  "People",
   "Movies",
+  "History",
   "Politics",
   "Music",
   "Science",
@@ -54,9 +57,9 @@ function TextEditor({ user }) {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    if (!user.auth){
-      navigate("/login")
-    }
+    // if (!user.auth){
+    //   navigate("/login")
+    // }
     
     if (quill == null || id == null) return;
     fetch(`/story/get/${id}`)
@@ -193,8 +196,7 @@ function TextEditor({ user }) {
       </Container>
       <Form>
         <div
-          style={{ display: "flex", justifyContent: "center" }}
-          key={`inline-switch`}
+          style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
           className="mb-3"
         >
           {checkboxes.map((name, index) => (
