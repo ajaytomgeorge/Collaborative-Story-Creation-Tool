@@ -14,6 +14,38 @@ All users do have access to all stories for viewing and editing, however, a stor
 can only be edited by one user at any time. If a user edits, others can only view. A central log is kept that keeps record of all views and edits 
 made with information about time, users and actions.
 
+
+
+## How to run locally
+
+#### Frontend - client:
+```
+cd client
+npm install
+npm run
+```
+
+#### Backend - server:
+```
+cd server
+npm install
+npm run
+```
+
+## Tests
+
+#### Frontend - client:
+```
+npm test
+```
+
+#### Backend - server:
+```
+npm test
+```
+
+
+
 ## Features
 
 #### Frontend:
