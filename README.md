@@ -18,18 +18,25 @@ made with information about time, users and actions.
 
 ## How to run locally
 
-#### Frontend - client:
+#### Run full App (Builds front end ):
+```
+npm install
+npm start
+```
+
+## Run Client and Server Separatly (For Development only)
+#### Frontend - Client Alone:
 ```
 cd client
 npm install
-npm run
+npm start
 ```
 
-#### Backend - server:
+#### Backend - Server Alone:
 ```
 cd server
 npm install
-npm run
+npm start
 ```
 
 ## Tests
