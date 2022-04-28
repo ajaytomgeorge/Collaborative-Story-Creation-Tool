@@ -57,9 +57,9 @@ function TextEditor({ user }) {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    if (!user.auth){
-      navigate("/login")
-    }
+    // if (!user.auth){
+    //   navigate("/login")
+    // }
     
     if (quill == null || id == null) return;
     fetch(`/story/get/${id}`)
